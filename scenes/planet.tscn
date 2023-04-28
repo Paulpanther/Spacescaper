@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvrybe888jlq2"]
+
+[ext_resource type="Script" path="res://scripts/Planet.gd" id="1_ykjsh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pov83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb2nf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ffobj"]
+material = SubResource("ShaderMaterial_mb2nf")
+
+[node name="planet" type="StaticBody3D"]
+script = ExtResource("1_ykjsh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_pov83")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ffobj")
