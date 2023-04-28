@@ -14,3 +14,7 @@ config/name="Spacescaper"
 run/main_scene="res://planet_tmp.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
