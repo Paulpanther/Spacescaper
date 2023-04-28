@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk88x1ujjlwwi"]
+[gd_scene load_steps=9 format=3 uid="uid://c7g22ay7hjhlh"]
 
-[ext_resource type="Shader" uid="uid://br38g8aqmpgp8" path="res://Planet1.tres" id="1_dy2w8"]
-[ext_resource type="Script" path="res://Planet.gd" id="2_sdtax"]
+[ext_resource type="Shader" uid="uid://br38g8aqmpgp8" path="res://shaders/Planet1.tres" id="1_si37o"]
+[ext_resource type="Script" path="res://scripts/Planet.gd" id="2_fa10p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yokhy"]
 
@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_1fqjc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p64ee"]
 render_priority = 0
-shader = ExtResource("1_dy2w8")
+shader = ExtResource("1_si37o")
 shader_parameter/bla = null
 
 [sub_resource type="SphereMesh" id="SphereMesh_j5fai"]
@@ -37,9 +37,9 @@ mesh = SubResource("SphereMesh_jpqsb")
 shape = SubResource("SphereShape3D_ggyar")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89035, 0.0739744, -0.456923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89035, 0.0739744, -0.162331)
 mesh = SubResource("SphereMesh_j5fai")
-script = ExtResource("2_sdtax")
+script = ExtResource("2_fa10p")
 bla = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]

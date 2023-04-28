@@ -1,11 +1,13 @@
-[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://c3cxbe4cdfxiv"]
+[gd_scene load_steps=12 format=3 uid="uid://dsqke1l0fgtmj"]
 
-[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin4d.gd" id="1_ouyxx"]
+[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin4d.gd" id="1_n4jan"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n8v2e"]
 
 [sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_t2xv8"]
 default_input_values = [1, Vector3(0, 0, 0), 2, 5.0, 3, 1.0, 4, 0.0]
 initialized = true
-script = ExtResource("1_ouyxx")
+script = ExtResource("1_n4jan")
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eghtn"]
 input_name = "time"
@@ -20,7 +22,7 @@ parameter_name = "bla"
 qualifier = 2
 hint = 1
 
-[resource]
+[sub_resource type="VisualShader" id="VisualShader_80ynv"]
 code = "shader_type spatial;
 instance uniform float bla : hint_range(0, 1);
 
@@ -50,3 +52,37 @@ nodes/fragment/7/position = Vector2(-220, 80)
 nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_11hqm")
 nodes/fragment/8/position = Vector2(560, -20)
 nodes/fragment/connections = PackedInt32Array(5, 0, 4, 4, 6, 0, 7, 0, 7, 1, 4, 0, 8, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w65vo"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("VisualShader_80ynv")
+
+[sub_resource type="SphereMesh" id="SphereMesh_32jn0"]
+material = SubResource("ShaderMaterial_w65vo")
+
+[sub_resource type="GDScript" id="GDScript_5rixn"]
+script/source = "extends MeshInstance3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	get_active_material(0).set_shader_parameter(\"bla\",0.5)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_n8v2e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.613994, 0.0571356, -0.78724, -0.0998764, 0.994984, -0.00568374, 0.782966, 0.0821165, 0.61662, 0, 0, 0)
+mesh = SubResource("SphereMesh_32jn0")
+script = SubResource("GDScript_5rixn")
