@@ -1,0 +1,52 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://c3cxbe4cdfxiv"]
+
+[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin4d.gd" id="1_ouyxx"]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_t2xv8"]
+default_input_values = [1, Vector3(0, 0, 0), 2, 5.0, 3, 1.0, 4, 0.0]
+initialized = true
+script = ExtResource("1_ouyxx")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eghtn"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_k77wa"]
+input_name = "view"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_rm687"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_11hqm"]
+parameter_name = "bla"
+qualifier = 2
+hint = 1
+
+[resource]
+code = "shader_type spatial;
+instance uniform float bla : hint_range(0, 1);
+
+
+
+void fragment() {
+// FloatParameter:8
+	float n_out8p0 = bla;
+
+
+// Output:0
+	ALBEDO = vec3(n_out8p0);
+
+
+}
+"
+graph_offset = Vector2(-107.485, -45.8406)
+nodes/fragment/0/position = Vector2(1260, 180)
+nodes/fragment/4/node = SubResource("VisualShaderNodeCustom_t2xv8")
+nodes/fragment/4/position = Vector2(327.116, 288.597)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_eghtn")
+nodes/fragment/5/position = Vector2(-400, 600)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_k77wa")
+nodes/fragment/6/position = Vector2(-840, 140)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorDecompose_rm687")
+nodes/fragment/7/position = Vector2(-220, 80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_11hqm")
+nodes/fragment/8/position = Vector2(560, -20)
+nodes/fragment/connections = PackedInt32Array(5, 0, 4, 4, 6, 0, 7, 0, 7, 1, 4, 0, 8, 0, 0, 0)
