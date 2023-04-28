@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://dk88x1ujjlwwi"]
+
+[ext_resource type="Shader" uid="uid://br38g8aqmpgp8" path="res://Planet1.tres" id="1_dy2w8"]
+[ext_resource type="Script" path="res://Planet.gd" id="2_sdtax"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yokhy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fqjc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jpqsb"]
+material = SubResource("StandardMaterial3D_1fqjc")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ggyar"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p64ee"]
+render_priority = 0
+shader = ExtResource("1_dy2w8")
+shader_parameter/bla = null
+
+[sub_resource type="SphereMesh" id="SphereMesh_j5fai"]
+material = SubResource("ShaderMaterial_p64ee")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_yokhy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.999536, -1.06418e-09, -0.0304513, -0.0303654, -0.0750657, -0.996716, -0.00228584, 0.997178, -0.0750309, 0, 0, 0)
+mesh = SubResource("SphereMesh_jpqsb")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("SphereShape3D_ggyar")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89035, 0.0739744, -0.456923)
+mesh = SubResource("SphereMesh_j5fai")
+script = ExtResource("2_sdtax")
+bla = 0.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.15929)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0724201, 0.997374, 0, -0.997374, -0.0724201, 0, 2.75484, 0)
