@@ -30,7 +30,6 @@ func _ready():
 		var value = config[param]
 		$MeshInstance3D.get_active_material(0).set_shader(shader)
 		$MeshInstance3D.get_active_material(0).set_shader_parameter(param,value)
-	pass
 
 func _process(delta):
 	var current_offset = offset + Time.get_ticks_msec()/1000.0 * speed / distance

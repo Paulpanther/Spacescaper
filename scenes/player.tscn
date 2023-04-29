@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b74obxunqy6f3"]
+[gd_scene load_steps=6 format=3 uid="uid://b74obxunqy6f3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fnamk"]
+[ext_resource type="Script" path="res://scripts/comms.gd" id="2_13hxo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4sqpf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lkhvo"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_os8kb"]
+resource_name = "Players"
+
 [node name="player" type="RigidBody3D"]
+angular_damp = 1.0
 script = ExtResource("1_fnamk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -17,3 +22,97 @@ mesh = SubResource("BoxMesh_lkhvo")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.963574, 0.26744, 0, -0.26744, 0.963574, 0, 2.12633, 4.01154)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Comms" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_13hxo")
+
+[node name="Input" type="HBoxContainer" parent="UI/Comms"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="UI/Comms/Input"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Button1" type="Button" parent="UI/Comms/Input"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_os8kb")
+text = "Player 1"
+
+[node name="Button2" type="Button" parent="UI/Comms/Input"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_os8kb")
+text = "Player 2"
+
+[node name="Button3" type="Button" parent="UI/Comms/Input"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_os8kb")
+text = "Player 3"
+
+[node name="Button4" type="Button" parent="UI/Comms/Input"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_os8kb")
+text = "Player 4"
+
+[node name="Output" type="HBoxContainer" parent="UI/Comms"]
+layout_mode = 2
+
+[node name="Players" type="VBoxContainer" parent="UI/Comms/Output"]
+layout_mode = 2
+
+[node name="Player1" type="HBoxContainer" parent="UI/Comms/Output/Players"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Comms/Output/Players/Player1"]
+layout_mode = 2
+text = "Player 1: "
+
+[node name="Text" type="Label" parent="UI/Comms/Output/Players/Player1"]
+layout_mode = 2
+
+[node name="Player2" type="HBoxContainer" parent="UI/Comms/Output/Players"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Comms/Output/Players/Player2"]
+layout_mode = 2
+text = "Player 2: "
+
+[node name="Text" type="Label" parent="UI/Comms/Output/Players/Player2"]
+layout_mode = 2
+
+[node name="Player3" type="HBoxContainer" parent="UI/Comms/Output/Players"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Comms/Output/Players/Player3"]
+layout_mode = 2
+text = "Player 3: "
+
+[node name="Text" type="Label" parent="UI/Comms/Output/Players/Player3"]
+layout_mode = 2
+
+[node name="Player4" type="HBoxContainer" parent="UI/Comms/Output/Players"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Comms/Output/Players/Player4"]
+layout_mode = 2
+text = "Player 4: "
+
+[node name="Text" type="Label" parent="UI/Comms/Output/Players/Player4"]
+layout_mode = 2
+
+[connection signal="toggled" from="UI/Comms/Input/Button1" to="UI/Comms" method="_on_button_1_toggled"]
+[connection signal="toggled" from="UI/Comms/Input/Button2" to="UI/Comms" method="_on_button_2_toggled"]
+[connection signal="toggled" from="UI/Comms/Input/Button3" to="UI/Comms" method="_on_button_3_toggled"]
+[connection signal="toggled" from="UI/Comms/Input/Button4" to="UI/Comms" method="_on_button_4_toggled"]

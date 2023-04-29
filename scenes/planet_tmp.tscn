@@ -1,62 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cv7vdcqvrohng"]
+[gd_scene load_steps=6 format=3 uid="uid://cv7vdcqvrohng"]
 
-[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin4d.gd" id="1_n4jan"]
+[ext_resource type="Shader" uid="uid://bbqjqxtlhcl4o" path="res://shaders/clouds.tres" id="1_4g47q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n8v2e"]
-
-[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_t2xv8"]
-default_input_values = [1, Vector3(0, 0, 0), 2, 5.0, 3, 1.0, 4, 0.0]
-initialized = true
-script = ExtResource("1_n4jan")
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eghtn"]
-input_name = "time"
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_k77wa"]
-input_name = "view"
-
-[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_rm687"]
-
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_11hqm"]
-parameter_name = "bla"
-qualifier = 2
-hint = 1
-
-[sub_resource type="VisualShader" id="VisualShader_80ynv"]
-code = "shader_type spatial;
-instance uniform float bla : hint_range(0, 1);
-
-
-
-void fragment() {
-// FloatParameter:8
-	float n_out8p0 = bla;
-
-
-// Output:0
-	ALBEDO = vec3(n_out8p0);
-
-
-}
-"
-graph_offset = Vector2(-107.485, -45.8406)
-nodes/fragment/0/position = Vector2(1260, 180)
-nodes/fragment/4/node = SubResource("VisualShaderNodeCustom_t2xv8")
-nodes/fragment/4/position = Vector2(327.116, 288.597)
-nodes/fragment/5/node = SubResource("VisualShaderNodeInput_eghtn")
-nodes/fragment/5/position = Vector2(-400, 600)
-nodes/fragment/6/node = SubResource("VisualShaderNodeInput_k77wa")
-nodes/fragment/6/position = Vector2(-840, 140)
-nodes/fragment/7/node = SubResource("VisualShaderNodeVectorDecompose_rm687")
-nodes/fragment/7/position = Vector2(-220, 80)
-nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_11hqm")
-nodes/fragment/8/position = Vector2(560, -20)
-nodes/fragment/connections = PackedInt32Array(5, 0, 4, 4, 6, 0, 7, 0, 7, 1, 4, 0, 8, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w65vo"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("VisualShader_80ynv")
+shader = ExtResource("1_4g47q")
 
 [sub_resource type="SphereMesh" id="SphereMesh_32jn0"]
 material = SubResource("ShaderMaterial_w65vo")

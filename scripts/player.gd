@@ -1,10 +1,19 @@
 extends RigidBody3D
 
+@export var player := 1 :
+	set(id):
+		player = id
+		# Give authority over the player input to the appropriate peer.
+		#$PlayerInput.set_multiplayer_authority(id)
 
+# Player synchronized input.
+#@onready var input = $PlayerInput
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	#if player == multiplayer.get_unique_id():
+	#	$Camera3D.current = true
+	pass
 
 
 func _input(event):
