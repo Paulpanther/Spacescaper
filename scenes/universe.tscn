@@ -1,19 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7g22ay7hjhlh"]
+[gd_scene load_steps=5 format=3 uid="uid://c7g22ay7hjhlh"]
 
-[ext_resource type="Script" path="res://scripts/planet_generation.gd" id="1_mr67r"]
-[ext_resource type="Environment" uid="uid://1canja8ub67c" path="res://world_env.tres" id="2_20be5"]
+[ext_resource type="Script" path="res://scripts/solar_system_generation.gd" id="1_0qtp4"]
+[ext_resource type="PackedScene" uid="uid://b74obxunqy6f3" path="res://scenes/player.tscn" id="2_3jgle"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd7iu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2o7e3"]
 
 [node name="Node3D" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.15929)
-current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0724201, 0.997374, 0, -0.997374, -0.0724201, 0, 2.75484, 0)
 
 [node name="planets" type="Node" parent="."]
-script = ExtResource("1_mr67r")
+script = ExtResource("1_0qtp4")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_20be5")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_cd7iu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CapsuleMesh_2o7e3")
+
+[node name="player" parent="." instance=ExtResource("2_3jgle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14764, 0, 0.590578)
+gravity_scale = 0.0
