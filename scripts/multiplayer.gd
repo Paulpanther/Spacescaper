@@ -40,7 +40,6 @@ func _on_connect_pressed():
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer client")
 		return
-	print("Started Client")
 	multiplayer.multiplayer_peer = peer
 	start_game()
 

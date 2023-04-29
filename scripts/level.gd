@@ -2,8 +2,11 @@ extends Node3D
 
 const SPAWN_RANDOM := 5.0
 
+var players = {}
+
 func _ready():
-	# We only need to spawn players on the server.
+	send_username()
+	
 	if not multiplayer.is_server():
 		return
 
@@ -18,6 +21,8 @@ func _ready():
 	if not OS.has_feature("dedicated_server"):
 		add_player(1)
 
+func send_username():
+	rpc("on_player", Global.username)
 
 func _exit_tree():
 	if not multiplayer.is_server():
@@ -27,16 +32,28 @@ func _exit_tree():
 
 
 func add_player(id: int):
-	return
-	var character = preload("res://scenes/player.tscn").instantiate()
-	# Set player id.
-	character.player = id
-	# Randomize character position.
-	var pos := Vector2.from_angle(randf() * 2 * PI)
-	character.position = Vector3(pos.x * SPAWN_RANDOM * randf(), 0, pos.y * SPAWN_RANDOM * randf())
-	character.name = str(id)
-	$Players.add_child(character, true)
+	rpc_id(id, "on_players", Global.players + [{"id": multiplayer.get_unique_id(), "username": Global.username}])
 
+@rpc("any_peer")
+func on_players(players):
+	Global.players = players
+	print(Global.username, "Add players: ", players)
+	$player/UI/Comms.update_players()
+
+@rpc("any_peer")
+func on_player(username: String):
+	if not multiplayer.is_server():
+		return
+		
+	var id = multiplayer.get_remote_sender_id()
+	Global.players.append({"id": id, "username": username})
+	
+	for other in multiplayer.get_peers():
+		if other != id:
+			rpc_id(other, "on_players", Global.players + [{"id": multiplayer.get_unique_id(), "username": Global.username}])
+	
+	print(Global.username, "Add player: ", username)
+	$player/UI/Comms.update_players()
 
 func del_player(id: int):
 	return

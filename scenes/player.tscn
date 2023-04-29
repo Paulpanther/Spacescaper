@@ -39,33 +39,29 @@ script = ExtResource("2_13hxo")
 [node name="Input" type="HBoxContainer" parent="UI/Comms"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="UI/Comms/Input"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Chat" type="Label" parent="UI/Comms/Input"]
 layout_mode = 2
 
 [node name="Button1" type="Button" parent="UI/Comms/Input"]
+visible = false
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_os8kb")
 text = "Player 1"
 
 [node name="Button2" type="Button" parent="UI/Comms/Input"]
+visible = false
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_os8kb")
 text = "Player 2"
 
 [node name="Button3" type="Button" parent="UI/Comms/Input"]
+visible = false
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_os8kb")
 text = "Player 3"
-
-[node name="Button4" type="Button" parent="UI/Comms/Input"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_os8kb")
-text = "Player 4"
 
 [node name="Output" type="HBoxContainer" parent="UI/Comms"]
 layout_mode = 2
@@ -74,6 +70,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Player1" type="HBoxContainer" parent="UI/Comms/Output/Players"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/Comms/Output/Players/Player1"]
@@ -84,6 +81,7 @@ text = "Player 1: "
 layout_mode = 2
 
 [node name="Player2" type="HBoxContainer" parent="UI/Comms/Output/Players"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/Comms/Output/Players/Player2"]
@@ -94,6 +92,7 @@ text = "Player 2: "
 layout_mode = 2
 
 [node name="Player3" type="HBoxContainer" parent="UI/Comms/Output/Players"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/Comms/Output/Players/Player3"]
@@ -103,17 +102,6 @@ text = "Player 3: "
 [node name="Text" type="Label" parent="UI/Comms/Output/Players/Player3"]
 layout_mode = 2
 
-[node name="Player4" type="HBoxContainer" parent="UI/Comms/Output/Players"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/Comms/Output/Players/Player4"]
-layout_mode = 2
-text = "Player 4: "
-
-[node name="Text" type="Label" parent="UI/Comms/Output/Players/Player4"]
-layout_mode = 2
-
 [connection signal="toggled" from="UI/Comms/Input/Button1" to="UI/Comms" method="_on_button_1_toggled"]
 [connection signal="toggled" from="UI/Comms/Input/Button2" to="UI/Comms" method="_on_button_2_toggled"]
 [connection signal="toggled" from="UI/Comms/Input/Button3" to="UI/Comms" method="_on_button_3_toggled"]
-[connection signal="toggled" from="UI/Comms/Input/Button4" to="UI/Comms" method="_on_button_4_toggled"]
