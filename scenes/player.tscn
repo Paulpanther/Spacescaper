@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b74obxunqy6f3"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_fnamk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4sqpf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lkhvo"]
+
+[node name="player" type="RigidBody3D"]
+script = ExtResource("1_fnamk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4sqpf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lkhvo")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.963574, 0.26744, 0, -0.26744, 0.963574, 0, 2.12633, 4.01154)

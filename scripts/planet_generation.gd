@@ -10,7 +10,6 @@ var planetClass = preload("res://scenes/planet.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var size = "small"
-	var lowerbound = 
 	var planet = planetClass.instantiate()
 	add_child(planet)
 	
