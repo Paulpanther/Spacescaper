@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7g22ay7hjhlh"]
+[gd_scene load_steps=6 format=3 uid="uid://c7g22ay7hjhlh"]
 
 [ext_resource type="Script" path="res://scripts/solar_system_generation.gd" id="1_0qtp4"]
 [ext_resource type="PackedScene" uid="uid://b74obxunqy6f3" path="res://scenes/player.tscn" id="2_3jgle"]
+[ext_resource type="Environment" uid="uid://1canja8ub67c" path="res://world_env.tres" id="3_7shnm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd7iu"]
 
@@ -26,3 +27,8 @@ mesh = SubResource("CapsuleMesh_2o7e3")
 [node name="player" parent="." instance=ExtResource("2_3jgle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14764, 0, 0.590578)
 gravity_scale = 0.0
+linear_thruster_strength = 0.7
+rotational_thruster_strength = 0.3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_7shnm")
