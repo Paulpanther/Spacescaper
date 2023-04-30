@@ -12,15 +12,13 @@ extends Node3D
 @export var offset: float  
 @export var display_tag: String
 
-var scales = [30, 150]
+var scales = [100, 100]
 
 
 func _ready():
 	var s = randf_range(scales[0], scales[1])
-	scale = Vector3(1,1,1) * s
+	scale = Vector3(1,1,1)*s
 	
-	var label: Label3D = get_node("DisplayTag")
-	label.text = display_tag + "(" + str(_calc_distance_to_player()) + ")"
 	
 	var shadernames = shaders.keys()
 	var shader = shadernames[randi_range(0,shadernames.size()-1)]
@@ -28,12 +26,14 @@ func _ready():
 	var configs = shaders[shader]
 	var config = configs[randi_range(0,configs.size()-1)]
 	
-	for param in config:
-		var value = config[param]
-		$MeshInstance3D.get_active_material(0).set_shader(shader)
-		$MeshInstance3D.get_active_material(0).set_shader_parameter(param,value)
+	#for param in config:
+	#	var value = config[param]
+	#	$MeshInstance3D.get_active_material(0).set_shader(shader)
+	#	$MeshInstance3D.get_active_material(0).set_shader_parameter(param,value)
 
 func _process(delta):
+	var label: Label3D = get_node("DisplayTag")
+	label.text = display_tag + "\n(" + str(_calc_distance_to_player()) + "m )"
 	update_pos()
 
 func update_pos():
@@ -45,9 +45,10 @@ func update_pos():
 	position.z = z
 
 func _calc_distance_to_player():
-	return (get_viewport().get_camera_3d().position) 
+	return int(get_viewport().get_camera_3d().global_position.distance_to(global_position)) 
 
 
 func _on_body_entered(body):
-	if body.is_in_group("player"):
-		body.open_dialog()
+	pass
+	#if body.is_in_group("player"):
+	#	body.open_dialog()

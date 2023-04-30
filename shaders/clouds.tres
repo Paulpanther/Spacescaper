@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=24 format=3 uid="uid://bbqjqxtlhcl4o"]
+[gd_resource type="VisualShader" load_steps=26 format=3 uid="uid://bbqjqxtlhcl4o"]
 
 [ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin4d.gd" id="1_uw61l"]
 
@@ -48,6 +48,12 @@ constant = Color(0.675994, 0.500826, 0.248702, 1)
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(1, 1, 1, 1), 2, Quaternion(0.5, 0.5, 0.5, 0.5)]
 op_type = 5
 
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_nvenm"]
+parameter_name = "rotation_z"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_a5qex"]
+
 [sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_h54k7"]
 default_input_values = [1, Vector3(0, 0, 0), 2, 2.0, 3, 10.0, 4, 0.0]
 initialized = true
@@ -80,6 +86,7 @@ code = "shader_type spatial;
 // Varyings
 varying vec3 world;
 
+uniform float rotation_z = 0;
 
 
 // PerlinNoise4D
@@ -281,6 +288,14 @@ void fragment() {
 	float n_out6p2 = n_out7p0.z;
 
 
+// FloatParameter:27
+	float n_out27p0 = rotation_z;
+
+
+// FloatOp:28
+	float n_out28p0 = n_out6p2 + n_out27p0;
+
+
 // Input:11
 	float n_out11p0 = TIME;
 
@@ -296,7 +311,7 @@ void fragment() {
 	float n_in4p2 = 2.00000;
 	float n_in4p3 = 10.00000;
 	{
-		n_out4p0 = _perlin4dNoiseFunc(vec4((vec3(n_out6p2).xy + n_in4p1.xy) * n_in4p2, n_in4p3, n_out16p0));
+		n_out4p0 = _perlin4dNoiseFunc(vec4((vec3(n_out28p0).xy + n_in4p1.xy) * n_in4p2, n_in4p3, n_out16p0));
 	}
 
 
@@ -335,7 +350,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-796.16, 29.6043)
+graph_offset = Vector2(-738.241, 141.904)
 varyings/world = "0,4"
 nodes/vertex/0/position = Vector2(620, 200)
 nodes/vertex/4/node = SubResource("VisualShaderNodeVaryingSetter_nrtka")
@@ -351,15 +366,15 @@ nodes/fragment/0/position = Vector2(1300, 120)
 nodes/fragment/4/node = SubResource("VisualShaderNodeCustom_h54k7")
 nodes/fragment/4/position = Vector2(-100, 360)
 nodes/fragment/6/node = SubResource("VisualShaderNodeVectorDecompose_ykq81")
-nodes/fragment/6/position = Vector2(-340, 360)
+nodes/fragment/6/position = Vector2(-700, 300)
 nodes/fragment/7/node = SubResource("VisualShaderNodeVaryingGetter_y7sxh")
-nodes/fragment/7/position = Vector2(-542, 423)
+nodes/fragment/7/position = Vector2(-900, 360)
 nodes/fragment/9/node = SubResource("VisualShaderNodeInput_4b1j2")
-nodes/fragment/9/position = Vector2(-620, 160)
+nodes/fragment/9/position = Vector2(-700, 180)
 nodes/fragment/10/node = SubResource("VisualShaderNodeVectorDecompose_rov0j")
 nodes/fragment/10/position = Vector2(-340, 140)
 nodes/fragment/11/node = SubResource("VisualShaderNodeInput_ipixf")
-nodes/fragment/11/position = Vector2(-640, 540)
+nodes/fragment/11/position = Vector2(-640, 640)
 nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_cjcf7")
 nodes/fragment/12/position = Vector2(240, 360)
 nodes/fragment/13/node = SubResource("VisualShaderNodeFloatOp_ythbt")
@@ -384,4 +399,8 @@ nodes/fragment/23/node = SubResource("VisualShaderNodeColorConstant_gxv8f")
 nodes/fragment/23/position = Vector2(860, 60)
 nodes/fragment/24/node = SubResource("VisualShaderNodeMix_l1od8")
 nodes/fragment/24/position = Vector2(1073.31, 16.3122)
-nodes/fragment/connections = PackedInt32Array(7, 0, 6, 0, 6, 2, 4, 0, 9, 0, 10, 0, 10, 1, 13, 0, 13, 0, 14, 0, 14, 0, 15, 0, 11, 0, 16, 0, 16, 0, 4, 4, 4, 0, 17, 0, 17, 0, 12, 0, 15, 0, 18, 0, 12, 0, 18, 1, 24, 0, 0, 0, 22, 0, 24, 0, 23, 0, 24, 1, 18, 0, 20, 0, 20, 0, 21, 0, 21, 0, 24, 2)
+nodes/fragment/27/node = SubResource("VisualShaderNodeFloatParameter_nvenm")
+nodes/fragment/27/position = Vector2(-1060, 520)
+nodes/fragment/28/node = SubResource("VisualShaderNodeFloatOp_a5qex")
+nodes/fragment/28/position = Vector2(-460, 420)
+nodes/fragment/connections = PackedInt32Array(7, 0, 6, 0, 10, 1, 13, 0, 13, 0, 14, 0, 14, 0, 15, 0, 16, 0, 4, 4, 4, 0, 17, 0, 17, 0, 12, 0, 15, 0, 18, 0, 24, 0, 0, 0, 22, 0, 24, 0, 23, 0, 24, 1, 18, 0, 20, 0, 20, 0, 21, 0, 21, 0, 24, 2, 12, 0, 18, 1, 9, 0, 10, 0, 11, 0, 16, 0, 6, 2, 28, 0, 28, 0, 4, 0, 27, 0, 28, 1)

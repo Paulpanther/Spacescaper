@@ -1,0 +1,27 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://b5lq37icl5k4k"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_dmbuy"]
+constant = Color(0.299505, 1, 0.91568, 1)
+
+[resource]
+code = "shader_type spatial;
+
+
+
+void fragment() {
+// ColorConstant:2
+	vec4 n_out2p0 = vec4(0.299505, 1.000000, 0.915680, 1.000000);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	EMISSION = vec3(n_out2p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-189.206, 62.861)
+nodes/fragment/0/position = Vector2(400, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_dmbuy")
+nodes/fragment/2/position = Vector2(-9.46891, 255.966)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 5, 2, 0, 0, 0)
