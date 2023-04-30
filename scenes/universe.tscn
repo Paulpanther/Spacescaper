@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7g22ay7hjhlh"]
+[gd_scene load_steps=10 format=3 uid="uid://c7g22ay7hjhlh"]
 
 [ext_resource type="Script" path="res://scripts/solar_system_generation.gd" id="1_0qtp4"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wikj0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Environment" uid="uid://c42xsomjsn02m" path="res://world_env.tres" id="3_7shnm"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_6gffw"]
 [ext_resource type="Script" path="res://scripts/generateObjectiveDistribution.gd" id="6_dlfnc"]
+[ext_resource type="PackedScene" uid="uid://c6maad21u3lj6" path="res://scenes/sun.tscn" id="7_nife8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd7iu"]
 
@@ -26,7 +27,7 @@ mesh = SubResource("CapsuleMesh_2o7e3")
 script = ExtResource("1_0qtp4")
 
 [node name="player" parent="." instance=ExtResource("2_3jgle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.943, 0, 0.591)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, 800)
 script = ExtResource("4_6gffw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -34,3 +35,5 @@ environment = ExtResource("3_7shnm")
 
 [node name="Generator" type="Node" parent="."]
 script = ExtResource("6_dlfnc")
+
+[node name="sun" parent="." instance=ExtResource("7_nife8")]

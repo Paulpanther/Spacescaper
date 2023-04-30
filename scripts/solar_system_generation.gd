@@ -17,6 +17,8 @@ func generate(planets):
 	planet_names.shuffle()
 	
 	for i in range(planets.size()):
+		var planet_data = planets[i]
+		
 		var distance = randi_range(distancerange[0],distancerange[1])
 		totalDist += distance
 		var planet = planetClass.instantiate()
@@ -26,6 +28,7 @@ func generate(planets):
 		planet.distance = totalDist
 		planet.speed = randf_range(speeds[0], speeds[1])
 		planet.display_tag = planet_names[i]
+		planet.color = Color(planet_data["color"])
 		
 		planet.update_pos()
 		add_child(planet)
