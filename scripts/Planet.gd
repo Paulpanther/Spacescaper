@@ -37,6 +37,7 @@ func _ready():
 	$planet_beacon6.color = color
 	$planet_beacon7.color = color
 	$planet_beacon8.color = color
+	print(color)
 	
 	
 	var shadernames = shaders.keys()
