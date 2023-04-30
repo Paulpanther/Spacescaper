@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cguq44wgbptoa"]
+
+[node name="rotating_overlay" type="Node2D"]
