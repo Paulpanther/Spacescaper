@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6maad21u3lj6"]
+
+[ext_resource type="Shader" uid="uid://b7nqe2ofx8aec" path="res://shaders/sun.tres" id="1_u4v0n"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p0a7y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mc8bh"]
+render_priority = 0
+shader = ExtResource("1_u4v0n")
+
+[node name="sun" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+mesh = SubResource("SphereMesh_p0a7y")
+surface_material_override/0 = SubResource("ShaderMaterial_mc8bh")
