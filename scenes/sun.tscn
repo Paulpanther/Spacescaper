@@ -2,15 +2,22 @@
 
 [ext_resource type="Shader" uid="uid://b7nqe2ofx8aec" path="res://shaders/sun.tres" id="1_u4v0n"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_p0a7y"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mc8bh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m71pd"]
 render_priority = 0
 shader = ExtResource("1_u4v0n")
+
+[sub_resource type="SphereMesh" id="SphereMesh_iud3e"]
+material = SubResource("ShaderMaterial_m71pd")
+radius = 300.0
+height = 600.0
 
 [node name="sun" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
-mesh = SubResource("SphereMesh_p0a7y")
-surface_material_override/0 = SubResource("ShaderMaterial_mc8bh")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_iud3e")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.996078, 0.756863, 1)
+light_energy = 1000.0
+omni_range = 1e+06

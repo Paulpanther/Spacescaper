@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7g22ay7hjhlh"]
+[gd_scene load_steps=8 format=3 uid="uid://c7g22ay7hjhlh"]
 
 [ext_resource type="Script" path="res://scripts/solar_system_generation.gd" id="1_0qtp4"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wikj0"]
@@ -8,20 +8,8 @@
 [ext_resource type="Script" path="res://scripts/generateObjectiveDistribution.gd" id="6_dlfnc"]
 [ext_resource type="PackedScene" uid="uid://c6maad21u3lj6" path="res://scenes/sun.tscn" id="7_nife8"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd7iu"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2o7e3"]
-
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_wikj0")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("CapsuleShape3D_cd7iu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("CapsuleMesh_2o7e3")
 
 [node name="planets" type="Node3D" parent="."]
 script = ExtResource("1_0qtp4")
