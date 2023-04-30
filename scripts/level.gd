@@ -5,6 +5,9 @@ const SPAWN_RANDOM := 5.0
 var players = {}
 
 func _ready():
+	$Node.numplayers = 3
+	$Node.createPlanetData()
+	
 	send_username()
 	
 	if not multiplayer.is_server():
