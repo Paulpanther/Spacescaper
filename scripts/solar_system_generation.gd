@@ -22,3 +22,7 @@ func _ready():
 		planet.display_tag = planet_names[i]
 		planet.update_pos()
 		add_child(planet)
+
+func generate(planets):
+	for i in range(planets):
+		var planet = planets[i]
