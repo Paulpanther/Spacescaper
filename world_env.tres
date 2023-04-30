@@ -1,6 +1,6 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://1canja8ub67c"]
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://c42xsomjsn02m"]
 
-[ext_resource type="Shader" uid="uid://kwxl0780y4d8" path="res://shaders/stars_shader.tres" id="1_wt5aq"]
+[ext_resource type="Shader" uid="uid://ccu1yj41oew5n" path="res://shaders/stars_shader.tres" id="1_wt5aq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqapp"]
 shader = ExtResource("1_wt5aq")
