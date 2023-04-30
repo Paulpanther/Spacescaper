@@ -25,6 +25,7 @@ var player_uis = [
 ]
 
 func _ready():
+	$Player/Label.text = "Your name: " + Global.username
 	update_players()
 	
 func _input(event):
@@ -45,12 +46,16 @@ func _process(delta):
 			return
 		
 		var c = inp.text[0]
-		rpc_id(player_uis[selectedPlayer]["id"], "on_char", c)
+		rpc("on_char", player_uis[selectedPlayer]["id"], multiplayer.get_unique_id(), c)
 		inp.text = inp.text.substr(1)
 
 @rpc("any_peer")
-func on_char(c: String):
-	var from = multiplayer.get_remote_sender_id()
+func on_char(id: int, from: int, c: String):
+	if id != multiplayer.get_unique_id():
+		if multiplayer.is_server():
+			rpc("on_char", id, from, c)
+		return
+			
 	var ui = player_uis.filter(func(ui): return ui["id"] == from)
 	if ui.size() == 0: return
 	ui[0]["output"].get_node("Text").text += c

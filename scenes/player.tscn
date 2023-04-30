@@ -36,10 +36,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_13hxo")
 
-[node name="Input" type="HBoxContainer" parent="UI/Comms"]
+[node name="Player" type="HBoxContainer" parent="UI/Comms"]
 layout_mode = 2
 
-[node name="Chat" type="Label" parent="UI/Comms/Input"]
+[node name="Label" type="Label" parent="UI/Comms/Player"]
+layout_mode = 2
+
+[node name="Input" type="HBoxContainer" parent="UI/Comms"]
 layout_mode = 2
 
 [node name="Button1" type="Button" parent="UI/Comms/Input"]
@@ -62,6 +65,10 @@ layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_os8kb")
 text = "Player 3"
+
+[node name="Chat" type="Label" parent="UI/Comms/Input"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="Output" type="HBoxContainer" parent="UI/Comms"]
 layout_mode = 2
