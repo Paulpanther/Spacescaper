@@ -113,6 +113,7 @@ text = "Player 3: "
 layout_mode = 2
 
 [node name="PlanetDialog" type="VBoxContainer" parent="UI/VBox"]
+process_mode = 3
 layout_mode = 2
 script = ExtResource("2_vcpg4")
 
