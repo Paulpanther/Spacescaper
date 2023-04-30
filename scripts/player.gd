@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@export var linear_thruster_strength = 100.0
+@export var linear_thruster_strength = 60.0
 @export var rotational_thruster_strength = 1.0
 
 func _ready():

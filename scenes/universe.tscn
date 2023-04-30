@@ -14,9 +14,6 @@
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_wikj0")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0724201, 0.997374, 0, -0.997374, -0.0724201, 0, 2.75484, 0)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]

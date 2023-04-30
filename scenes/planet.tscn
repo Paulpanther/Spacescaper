@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cte3r4dspg6c4"]
+[gd_scene load_steps=4 format=3 uid="uid://cte3r4dspg6c4"]
 
 [ext_resource type="Script" path="res://scripts/Planet.gd" id="1_ykjsh"]
+[ext_resource type="PackedScene" uid="uid://bmlu4mlli1jg4" path="res://assets/planet_beacon_eighth.tscn" id="2_ls6ts"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pov83"]
 radius = 5.672
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb2nf"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_ffobj"]
-material = SubResource("ShaderMaterial_mb2nf")
 
 [node name="planet" type="Area3D"]
 script = ExtResource("1_ykjsh")
@@ -16,20 +12,40 @@ script = ExtResource("1_ykjsh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pov83")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_ffobj")
-
 [node name="DisplayTag" type="Label3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 pixel_size = 0.0001
 billboard = 1
 no_depth_test = true
 fixed_size = true
 alpha_antialiasing_mode = 1
 texture_filter = 1
-font_size = 64
-outline_size = 0
+font_size = 48
+outline_size = 4
 width = 128.0
+
+[node name="planet_beacon" parent="." instance=ExtResource("2_ls6ts")]
+
+[node name="planet_beacon2" parent="." instance=ExtResource("2_ls6ts")]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
+
+[node name="planet_beacon3" parent="." instance=ExtResource("2_ls6ts")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="planet_beacon4" parent="." instance=ExtResource("2_ls6ts")]
+transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 0, 0, 0)
+
+[node name="planet_beacon5" parent="." instance=ExtResource("2_ls6ts")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+
+[node name="planet_beacon6" parent="." instance=ExtResource("2_ls6ts")]
+transform = Transform3D(2.98023e-08, 0, 1, -8.74228e-08, -1, 2.6054e-15, 1, -8.74228e-08, -2.98023e-08, 0, 0, 0)
+
+[node name="planet_beacon7" parent="." instance=ExtResource("2_ls6ts")]
+transform = Transform3D(-1, 0, -8.74228e-08, 7.64274e-15, -1, -8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, 0, 0)
+
+[node name="planet_beacon8" parent="." instance=ExtResource("2_ls6ts")]
+transform = Transform3D(5.76205e-08, 0, -1, 8.74228e-08, -1, 5.03734e-15, -1, -8.74228e-08, -5.76205e-08, 0, 0, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="tree_entered" from="CollisionShape3D" to="." method="_on_collision_shape_3d_tree_entered"]

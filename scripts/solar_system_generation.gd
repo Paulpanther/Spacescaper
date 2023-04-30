@@ -1,10 +1,10 @@
 extends Node
 
 var planet_names = ["Pluto", "Dwarf", "Leo", "Bernd", "Bernd the Planet", "Hasel", "Gatos", "Mordor", "Gondor", "[object Object]", "Rolf", "Und Danke!", "Hera", "Ceres", "Hades", "Ares", "Poseidon", "S.A. Corey", "Proto-M", "Leviathan"]
-var distancerange = [100,600]
-var mindistance = 0
+var distancerange = [1000,6000]
+var mindistance = 1000
 var num_planets = [2,10]
-var speeds = [10, 100]
+var speeds = [10, 300]
 var planetClass = preload("res://scenes/planet.tscn")
 
 func _ready():
