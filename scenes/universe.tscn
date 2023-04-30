@@ -30,3 +30,6 @@ script = ExtResource("4_6gffw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_7shnm")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_irxyd")
