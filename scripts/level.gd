@@ -6,7 +6,7 @@ var players = {}
 
 func _ready():
 	$Node.numplayers = 3
-	$Node.createPlanetData()
+	print($Node.createPlanetData())
 	
 	send_username()
 	

@@ -59,8 +59,11 @@ func pickRandom(list):
 	var index = randi_range(0,list.size()-1)
 	return	list[index]
 	
+func shift_list(l: Array):
+	var first = l.pop_front()
+	l.push_back(first)
+	
 func createPlanetData():
-	var player_infos = range(numplayers)
 	var player_planets = range(numplayers)
 	
 	colors.shuffle()
@@ -68,56 +71,33 @@ func createPlanetData():
 	var remaining_colors = colors.slice(symbols.size())
 	var next_color = 0
 	
-	for i in range(numplayers):
-		player_infos[i] = {
-			"beacon": 0,
-			"symbol": 0,
-			"passw": 0
-		}
-		
-		var bucket = range(symbols.size())
-		var bucketCopy = bucket.duplicate()
-		for n in range(i):
-			bucketCopy.erase(player_infos[n]["beacon"])
-		
-		var symbolIndex = pickRandom(bucketCopy)
-		player_infos[i]["beacon"] = symbolIndex
-		bucket.erase(symbolIndex)
-		
+	var permutation = range(symbols.size())
+	permutation.shuffle()
 	
-		bucketCopy = bucket.duplicate()
-		for n in range(i):
-			bucketCopy.erase(player_infos[n]["passw"])
+	for i in range(numplayers):
+		var passw = permutation[0]
+		var beacon = permutation[1]
+		var symbol = permutation[2]
 		
-		symbolIndex = pickRandom(bucketCopy)
-		player_infos[i]["passw"] = symbolIndex
-		bucket.erase(symbolIndex)
+		shift_list(permutation)
 		
-		bucketCopy = bucket.duplicate()
-		for n in range(i):
-			bucketCopy.erase(player_infos[n]["symbol"])
-		
-		symbolIndex = pickRandom(bucketCopy)
-		player_infos[i]["symbol"] = symbolIndex
-		bucket.erase(symbolIndex)
-
 		var beacon_i = randi_range(0, 1)
 		var planets = [
 			{
 				"type": "passw",
-				"passw": passwords[player_infos[i]["passw"]],
-				"symbol": symbols[player_infos[i]["passw"]],
+				"passw": passwords[passw],
+				"symbol": symbols[passw],
 				"is_beacon": beacon_i == 0,
-				"beacon_passw": passwords[player_infos[i]["beacon"]] if beacon_i == 0 else "",
-				"color": beacon_colors[player_infos[i]["beacon"]] if beacon_i == 0 else remaining_colors[next_color]
+				"beacon_passw": passwords[beacon] if beacon_i == 0 else "",
+				"color": beacon_colors[beacon] if beacon_i == 0 else remaining_colors[next_color]
 			},
 			{
 				"type": "symbol",
-				"symbol": symbols[player_infos[i]["symbol"]],
-				"symbol_color": beacon_colors[player_infos[i]["symbol"]],
+				"symbol": symbols[symbol],
+				"symbol_color": beacon_colors[symbol],
 				"is_beacon": beacon_i == 1,
-				"beacon_passw": passwords[player_infos[i]["beacon"]] if beacon_i == 1 else "",
-				"color": beacon_colors[player_infos[i]["beacon"]] if beacon_i == 1 else remaining_colors[next_color+1]
+				"beacon_passw": passwords[beacon] if beacon_i == 1 else "",
+				"color": beacon_colors[beacon] if beacon_i == 1 else remaining_colors[next_color+1]
 			},
 		]
 		player_planets[i] = planets

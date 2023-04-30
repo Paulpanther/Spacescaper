@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7g22ay7hjhlh"]
+[gd_scene load_steps=9 format=3 uid="uid://c7g22ay7hjhlh"]
 
 [ext_resource type="Script" path="res://scripts/solar_system_generation.gd" id="1_0qtp4"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wikj0"]
 [ext_resource type="PackedScene" uid="uid://b74obxunqy6f3" path="res://scenes/player.tscn" id="2_3jgle"]
 [ext_resource type="Environment" uid="uid://c42xsomjsn02m" path="res://world_env.tres" id="3_7shnm"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_6gffw"]
+[ext_resource type="Script" path="res://scripts/generateObjectiveDistribution.gd" id="6_dlfnc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd7iu"]
 
@@ -35,4 +36,4 @@ script = ExtResource("4_6gffw")
 environment = ExtResource("3_7shnm")
 
 [node name="Node" type="Node" parent="."]
-script = ExtResource("5_irxyd")
+script = ExtResource("6_dlfnc")
