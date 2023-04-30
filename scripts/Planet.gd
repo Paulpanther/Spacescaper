@@ -12,12 +12,31 @@ extends Node3D
 @export var offset: float  
 @export var display_tag: String
 
+@export var color: Color
+@export var type: String
+@export var symbol: String
+@export var symbol_color: Color
+@export var passw: String
+@export var passw_symbol: String
+@export var is_beacon: bool
+@export var beacon_passw: String
+	
+
 var scales = [100, 100]
 
 
 func _ready():
 	var s = randf_range(scales[0], scales[1])
 	scale = Vector3(1,1,1)*s
+	
+	$planet_beacon.color = color
+	$planet_beacon2.color = color
+	$planet_beacon3.color = color
+	$planet_beacon4.color = color
+	$planet_beacon5.color = color
+	$planet_beacon6.color = color
+	$planet_beacon7.color = color
+	$planet_beacon8.color = color
 	
 	
 	var shadernames = shaders.keys()

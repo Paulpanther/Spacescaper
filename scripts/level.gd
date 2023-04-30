@@ -5,8 +5,6 @@ const SPAWN_RANDOM := 5.0
 var players = {}
 
 func _ready():
-	$Node.numplayers = 3
-	print($Node.createPlanetData())
 	
 	send_username()
 	

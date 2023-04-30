@@ -8,6 +8,7 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_4g47q")
+shader_parameter/rotation_z = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_32jn0"]
 material = SubResource("ShaderMaterial_w65vo")
