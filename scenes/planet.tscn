@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://scripts/Planet.gd" id="1_ykjsh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pov83"]
+radius = 5.672
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mb2nf"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ffobj"]
 material = SubResource("ShaderMaterial_mb2nf")
 
-[node name="planet" type="StaticBody3D"]
+[node name="planet" type="Area3D"]
 script = ExtResource("1_ykjsh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -17,3 +18,18 @@ shape = SubResource("SphereShape3D_pov83")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_ffobj")
+
+[node name="DisplayTag" type="Label3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+pixel_size = 0.0001
+billboard = 1
+no_depth_test = true
+fixed_size = true
+alpha_antialiasing_mode = 1
+texture_filter = 1
+font_size = 64
+outline_size = 0
+width = 128.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_entered" from="CollisionShape3D" to="." method="_on_collision_shape_3d_tree_entered"]

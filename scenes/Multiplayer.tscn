@@ -59,5 +59,7 @@ text = "Username: "
 [node name="Username" type="LineEdit" parent="UI/Net/Options"]
 layout_mode = 2
 
+[connection signal="despawned" from="LevelSpawner" to="." method="_on_level_spawner_despawned"]
+[connection signal="spawned" from="LevelSpawner" to="." method="_on_level_spawner_spawned"]
 [connection signal="pressed" from="UI/Net/Options/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="UI/Net/Options/Connect" to="." method="_on_connect_pressed"]

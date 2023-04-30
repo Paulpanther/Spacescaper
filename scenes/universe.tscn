@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wikj0"]
 [ext_resource type="PackedScene" uid="uid://b74obxunqy6f3" path="res://scenes/player.tscn" id="2_3jgle"]
 [ext_resource type="Environment" uid="uid://c42xsomjsn02m" path="res://world_env.tres" id="3_7shnm"]
-[ext_resource type="Script" path="res://scripts/generateObjectiveDistribution.gd" id="5_irxyd"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="4_6gffw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd7iu"]
 
@@ -28,10 +28,8 @@ mesh = SubResource("CapsuleMesh_2o7e3")
 script = ExtResource("1_0qtp4")
 
 [node name="player" parent="." instance=ExtResource("2_3jgle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14764, 0, 0.590578)
-gravity_scale = 0.0
-linear_thruster_strength = 0.7
-rotational_thruster_strength = 0.3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.943, 0, 0.591)
+script = ExtResource("4_6gffw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_7shnm")

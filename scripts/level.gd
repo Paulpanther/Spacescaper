@@ -20,10 +20,6 @@ func _ready():
 	for id in multiplayer.get_peers():
 		add_player(id)
 
-	# Spawn the local player unless this is a dedicated server export.
-	if not OS.has_feature("dedicated_server"):
-		add_player(1)
-
 func send_username():
 	rpc("on_player", Global.username)
 
@@ -35,12 +31,14 @@ func _exit_tree():
 
 
 func add_player(id: int):
-	rpc_id(id, "on_players", Global.players + [{"id": multiplayer.get_unique_id(), "username": Global.username}])
+	var all =  Global.players + [{"id": multiplayer.get_unique_id(), "username": Global.username}]
+	var allWithoutId = all.filter(func(it): return it["id"] != id)
+	rpc_id(id, "on_players", allWithoutId)
 
 @rpc("any_peer")
 func on_players(players):
 	Global.players = players
-	print(Global.username, "Add players: ", players)
+	print(Global.username, " Add players: ", players)
 	$player/UI/Comms.update_players()
 
 @rpc("any_peer")
@@ -53,13 +51,10 @@ func on_player(username: String):
 	
 	for other in multiplayer.get_peers():
 		if other != id:
-			rpc_id(other, "on_players", Global.players + [{"id": multiplayer.get_unique_id(), "username": Global.username}])
+			add_player(other)
 	
-	print(Global.username, "Add player: ", username)
+	print(Global.username, " Add player: ", username)
 	$player/UI/Comms.update_players()
 
 func del_player(id: int):
-	return
-	if not $Players.has_node(str(id)):
-		return
-	$Players.get_node(str(id)).queue_free()
+	pass

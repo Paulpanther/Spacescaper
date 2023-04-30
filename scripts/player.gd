@@ -1,5 +1,6 @@
 extends RigidBody3D
-@export var linear_thruster_strength = 1.0	
+
+@export var linear_thruster_strength = 100.0
 @export var rotational_thruster_strength = 1.0
 
 func _ready():
@@ -14,6 +15,9 @@ func _physics_process(delta):
 	
 	#(Input.get_action_strength("roll_left") - Input.get_action_strength("roll_right")) * delta * rotational_thruster_strength
 	
-	apply_central_impulse(linear)
+	apply_central_impulse(-transform.basis.z * (Input.get_action_strength("backward") - Input.get_action_strength("forward")) * delta * linear_thruster_strength)
 	apply_torque_impulse(transform.basis.y * (Input.get_action_strength("yaw_left") - Input.get_action_strength("yaw_right")) * delta * rotational_thruster_strength)
-	apply_torque_impulse(transform.basis.x * (Input.get_action_strength("pitch_down") - Input.get_action_strength("pitch_up")) * delta * rotational_thruster_strength)
+	#apply_torque_impulse(transform.basis.x * (Input.get_action_strength("pitch_down") - Input.get_action_strength("pitch_up")) * delta * rotational_thruster_strength)
+
+func open_dialog():
+	$UI/VBox/PlanetDialog.open_dialog()
