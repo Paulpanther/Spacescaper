@@ -1,10 +1,10 @@
 extends Node
 
 var planet_names = ["Pluto", "Dwarf", "Leo", "Bernd", "Bernd the Planet", "Hasel", "Gatos", "Mordor", "Gondor", "[object Object]", "Rolf", "Und Danke!", "Hera", "Ceres", "Hades", "Ares", "Poseidon", "S.A. Corey", "Proto-M", "Leviathan"]
-var distancerange = [800,8000]
+var distancerange = [100,600]
 var mindistance = 0
 var num_planets = [2,10]
-var speeds = [100, 800]
+var speeds = [10, 100]
 var planetClass = preload("res://scenes/planet.tscn")
 
 func _ready():
@@ -20,4 +20,5 @@ func _ready():
 		planet.distance = totalDist
 		planet.speed = randf_range(speeds[0], speeds[1])
 		planet.display_tag = planet_names[i]
+		planet.update_pos()
 		add_child(planet)

@@ -34,6 +34,9 @@ func _ready():
 		$MeshInstance3D.get_active_material(0).set_shader_parameter(param,value)
 
 func _process(delta):
+	update_pos()
+
+func update_pos():
 	var current_offset = offset + (Time.get_ticks_msec()/1000.0) * (speed / distance)
 	var x = sin(current_offset) * distance
 	var z = cos(current_offset) * distance
@@ -43,3 +46,8 @@ func _process(delta):
 
 func _calc_distance_to_player():
 	return (get_viewport().get_camera_3d().position) 
+
+
+func _on_body_entered(body):
+	if body.is_in_group("player"):
+		body.open_dialog()
