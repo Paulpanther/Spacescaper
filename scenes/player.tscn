@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b74obxunqy6f3"]
+[gd_scene load_steps=6 format=3 uid="uid://b74obxunqy6f3"]
 
 [ext_resource type="Script" path="res://scripts/comms.gd" id="2_13hxo"]
 [ext_resource type="Script" path="res://scripts/dialog.gd" id="2_vcpg4"]
-[ext_resource type="Script" path="res://scripts/rotating_overlay.gd" id="4_nj548"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4sqpf"]
 
@@ -141,13 +140,6 @@ layout_mode = 2
 [node name="Close" type="Button" parent="UI/VBox/PlanetDialog"]
 layout_mode = 2
 text = "Close"
-
-[node name="TextureRect" type="TextureRect" parent="UI"]
-layout_mode = 0
-offset_right = 1923.0
-offset_bottom = 1087.0
-expand_mode = 2
-script = ExtResource("4_nj548")
 
 [connection signal="toggled" from="UI/VBox/Comms/Input/Button1" to="UI/VBox/Comms" method="_on_button_1_toggled"]
 [connection signal="toggled" from="UI/VBox/Comms/Input/Button2" to="UI/VBox/Comms" method="_on_button_2_toggled"]
